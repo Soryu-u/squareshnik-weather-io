@@ -1,0 +1,51 @@
+.header {
+    display: flex;
+    width: 100%;
+    justify-content: space-evenly;
+    align-items: center;
+    color: white;
+    padding: 10px 0;
+}
+
+.active {
+    color: black;
+    background-color: white;
+    border-radius: 20px
+
+}
+
+.temperature {
+    width: 150px;
+    list-style: none;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-weight: bold;
+    font-size: 20px;
+    margin: 0;
+    padding: 0;
+}
+
+.temperature > li {
+    height: 45px;
+    width: 60px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 10px;
+    cursor: pointer;
+}
+
+.logo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+    font-size: 18px;
+}
+
+.logoImage {
+    width: 50px;
+    height: 50px;
+    margin: 0 20px;
+}

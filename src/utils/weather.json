@@ -1,0 +1,45 @@
+{
+  "coord": {
+    "lon": 32.0621,
+    "lat": 49.4285
+  },
+  "weather": [
+    {
+      "id": 803,
+      "main": "Clouds",
+      "description": "broken clouds",
+      "icon": "04d",
+      "imageUrl": "https://openweathermap.org/img/wn/04d@2x.png"
+    }
+  ],
+  "base": "stations",
+  "main": {
+    "temp": 283.52,
+    "feels_like": 282.18,
+    "temp_min": 283.52,
+    "temp_max": 283.52,
+    "pressure": 1017,
+    "humidity": 60,
+    "sea_level": 1017,
+    "grnd_level": 1004
+  },
+  "visibility": 10000,
+  "wind": {
+    "speed": 4.85,
+    "deg": 33,
+    "gust": 9.77
+  },
+  "clouds": {
+    "all": 72
+  },
+  "dt": 1682786343,
+  "sys": {
+    "country": "UA",
+    "sunrise": 1682735641,
+    "sunset": 1682787845
+  },
+  "timezone": 10800,
+  "id": 710791,
+  "name": "Cherkasy",
+  "cod": 200
+}

@@ -1,0 +1,97 @@
+.container {
+    color: white;
+    background-color: rgb(42, 42, 42);
+    width: 340px;
+    margin: 15px;
+    height: 370px;
+
+    border-radius: 10px;
+}
+
+.header {
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+}
+
+.day {
+    background-color: #d78e37;
+}
+
+.night {
+    background-color: #4c37d7;
+}
+
+.date {
+    display: flex;
+    justify-content: flex-start;
+    font-weight: bold;
+    font-size: 20px;
+}
+
+.dateItem {
+    margin: 0 10px;
+}
+
+.city {
+    margin: 0 10px;
+
+}
+
+.weather {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 15px;
+}
+
+.weatherItem {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-weight: bold;
+    font-size: 20px;
+}
+
+.weatherIcon {
+    height: 100px;
+    width: 100px;
+    object-fit: cover;
+}
+
+.temperature {
+    font-weight: bold;
+    font-size: 55px;
+}
+
+.horizontalLine {
+    display: block;
+    border-top: 1px solid white;
+    width: 100%;
+}
+
+.info {
+    margin: 20px 10px 10px 10px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 20px;
+    justify-items: stretch;
+}
+
+.infoItem {
+    display: flex;
+}
+
+.infoImage {
+    width: 36px;
+    height: 36px;
+    margin-right: 10px;
+}
+
+.infoDescription {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    font-size: 14px;
+}
