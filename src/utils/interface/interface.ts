@@ -1,4 +1,5 @@
 export default interface WeatherData {
+    reqId: string
     coord: {
         lon: number
         lat: number

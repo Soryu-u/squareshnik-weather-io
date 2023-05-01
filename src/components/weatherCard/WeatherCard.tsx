@@ -5,10 +5,16 @@ import wind from '../../images/wind.png'
 import pressure from '../../images/temperature.png'
 import humidity from '../../images/humidity.png'
 import rain from '../../images/acid-rain.png'
+import plus from '../../images/plus.png'
+import refresh from '../../images/refresh.png'
 import WeatherInfo from '../weatherInfo/WeatherInfo'
 import { useSelector } from 'react-redux'
 
-export default function WeatherCard(props: { data: WeatherData }) {
+export default function WeatherCard(props: {
+    data: WeatherData
+    onDelete: () => void
+    onRefresh: () => void
+}) {
     const weatherInfo = [
         {
             image: wind,
@@ -37,7 +43,6 @@ export default function WeatherCard(props: { data: WeatherData }) {
     ]
 
     const temperatureUnit = useSelector((state: any) => state.weather.temperatureUnit)
-
     function convertTemperature(temperature: number, temperatureUnit: string): string {
         if (temperatureUnit === 'C') {
             return (temperature - 273.15).toFixed(0)
@@ -45,12 +50,11 @@ export default function WeatherCard(props: { data: WeatherData }) {
             return (((temperature - 273.15) * 9) / 5 + 32).toFixed(0)
         }
     }
-
     const temperature: string = convertTemperature(props.data.main.temp, temperatureUnit)
+
     const iconUrl: string = props.data.weather[0].imageUrl
 
     const timezoneOffset = props.data.timezone
-
     const localTimezoneOffset = new Date().getTimezoneOffset() * 60000
     const localTime = new Date(Date.now() + timezoneOffset * 1000 + localTimezoneOffset)
 
@@ -60,7 +64,6 @@ export default function WeatherCard(props: { data: WeatherData }) {
         month: 'long',
         day: 'numeric',
     })
-
     const formattedTime = localTime.toLocaleTimeString('en-US', {
         hour: '2-digit',
         minute: '2-digit',
@@ -75,6 +78,12 @@ export default function WeatherCard(props: { data: WeatherData }) {
             <div className={[styles.header, headerClassName].join(' ')}>
                 <div className={styles.date}>
                     <div className={styles.dateItem}>{formattedDate}</div>
+                    <img
+                        className={styles.removeItem}
+                        onClick={props.onDelete}
+                        src={plus}
+                        alt={'remove'}
+                    />
                 </div>
                 <div>
                     <div className={styles.city}>
@@ -82,7 +91,7 @@ export default function WeatherCard(props: { data: WeatherData }) {
                     </div>
                 </div>
             </div>
-            <div style={{ padding: '5px 15px 15px 15px' }}>
+            <div className={styles.content}>
                 <div className={styles.weather}>
                     <div className={styles.weatherItem}>
                         <img
@@ -101,6 +110,16 @@ export default function WeatherCard(props: { data: WeatherData }) {
                     {weatherInfo.map((item, index) => {
                         return <WeatherInfo key={index.toString() + item.alt} data={item} />
                     })}
+                </div>
+                <span className={styles.horizontalLine}></span>
+                <div className={styles.navigation}>
+                    <img
+                        className={styles.refresh}
+                        onClick={props.onRefresh}
+                        src={refresh}
+                        alt={'refresh'}
+                    />
+                    <div className={styles.open}>See details</div>
                 </div>
             </div>
         </div>

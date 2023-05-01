@@ -40,7 +40,7 @@ export default function SelectCityModal({ weather, setWeather, setSelectCity }: 
                 <input type='text' value={city} onChange={handleInputChange} />
                 <div>
                     <button onClick={handleAccept}>Accept</button>
-                    <button onClick={handleCancel}>Cansel</button>
+                    <button onClick={handleCancel}>Cancel</button>
                 </div>
             </div>
         </div>

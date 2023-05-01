@@ -12,6 +12,7 @@ export default function Header() {
     const handleTemperatureUnitChange = (unit: string) => {
         dispatch(changeTemperatureUnit(unit))
     }
+
     return (
         <div className={styles.header}>
             <div className={styles.logo}>

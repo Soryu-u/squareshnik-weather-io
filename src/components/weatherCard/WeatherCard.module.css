@@ -1,15 +1,13 @@
 .container {
     color: white;
     background-color: rgb(42, 42, 42);
-    width: 340px;
+    width:max-content;
     margin: 15px;
-    height: 370px;
 
     border-radius: 10px;
 }
 
 .header {
-    overflow: hidden;
     display: flex;
     flex-direction: column;
     padding: 10px;
@@ -25,7 +23,7 @@
 
 .date {
     display: flex;
-    justify-content: flex-start;
+    justify-content: space-between;
     font-weight: bold;
     font-size: 20px;
 }
@@ -36,14 +34,28 @@
 
 .city {
     margin: 0 10px;
+}
 
+.removeItem {
+    width: 25px;
+    height: 25px;
+    rotate: 45deg;
+    cursor: pointer;
+}
+
+.removeItem:hover {
+    scale: 1.1;
+}
+
+.content {
+    padding: 5px 15px 15px 15px;
 }
 
 .weather {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    margin: 15px;
+    margin: 15px 10px;
 }
 
 .weatherItem {
@@ -72,7 +84,7 @@
 }
 
 .info {
-    margin: 20px 10px 10px 10px;
+    margin: 20px 10px 20px 10px;
     display: grid;
     grid-template-columns: 1fr 1fr;
     grid-gap: 20px;
@@ -94,4 +106,31 @@
     flex-direction: column;
     align-items: flex-start;
     font-size: 14px;
+}
+
+.navigation {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 15px 10px 0 10px;
+}
+
+.refresh {
+    width: 40px;
+    height: 40px;
+    cursor: pointer;
+    transition: transform 0.5s ease-in-out;
+}
+
+.refresh:hover {
+    transform: rotate(180deg);
+}
+
+.open {
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+.open:hover {
+    text-decoration: none;
 }
