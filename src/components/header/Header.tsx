@@ -6,6 +6,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { changeTemperatureUnit } from '../../utils/redux/weatherSlice'
 import { getWeather } from '../../utils/axios/axios'
 import { addLocation } from '../../utils/redux/locationSlice'
+import { Link } from 'react-router-dom'
 
 export default function Header() {
     const [city, setCity] = useState<string>('')
@@ -34,10 +35,10 @@ export default function Header() {
 
     return (
         <div className={styles.header}>
-            <div className={styles.logo}>
+            <Link to={'/'} className={styles.logo}>
                 <img className={styles.logoImage} src={logo} alt={'logo'} />
                 Weather IO
-            </div>
+            </Link>
             <div className={styles.input}>
                 <img src={search} alt={'search'} />
                 <input

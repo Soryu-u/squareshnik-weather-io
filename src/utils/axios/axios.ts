@@ -1,5 +1,6 @@
 import axios from 'axios'
 import type WeatherData from '../interface/interface'
+import type FullWeatherData from '../interface/fullDataInterface'
 
 let idd = 0
 
@@ -14,6 +15,21 @@ export const getWeather = async (city: string) => {
 
     weatherData.reqId = `${idd}%${weatherData.name}`
     weatherData.weather[0].imageUrl = `https://openweathermap.org/img/wn/${iconCode}@2x.png`
+
+    return weatherData
+}
+
+export const getFullWeatherInfo = async (city: string) => {
+    const res = await axios.get(
+        `https://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=0a5b118c9e91cce613466cd78c723746&exclude=minutely,alerts`,
+    )
+    const weatherData: FullWeatherData = res.data
+
+    weatherData.list.map((item: any) => {
+        const iconUrl: string = item.weather[0].icon
+        item.weather[0].imageUrl = `https://openweathermap.org/img/wn/${iconUrl}@2x.png`
+        return item
+    })
 
     return weatherData
 }

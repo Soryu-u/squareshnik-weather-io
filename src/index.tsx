@@ -5,6 +5,7 @@ import './index.css'
 import Root from './routes/root/Root'
 import ErrorPage from './error-page'
 import Home from './routes/home/Home'
+import Info from './routes/info/Info'
 
 const router = createBrowserRouter([
     {
@@ -14,6 +15,10 @@ const router = createBrowserRouter([
         children: [
             {
                 path: '/',
+                element: <Info />,
+            },
+            {
+                path: '/info/:id',
                 element: <Home />,
             },
         ],

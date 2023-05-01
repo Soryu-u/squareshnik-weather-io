@@ -9,6 +9,7 @@ import plus from '../../images/plus.png'
 import refresh from '../../images/refresh.png'
 import WeatherInfo from '../weatherInfo/WeatherInfo'
 import { useSelector } from 'react-redux'
+import { Link } from 'react-router-dom'
 
 export default function WeatherCard(props: {
     data: WeatherData
@@ -119,7 +120,9 @@ export default function WeatherCard(props: {
                         src={refresh}
                         alt={'refresh'}
                     />
-                    <div className={styles.open}>See details</div>
+                    <Link to={`info/${props.data.reqId}`} className={styles.open}>
+                        See details
+                    </Link>
                 </div>
             </div>
         </div>
