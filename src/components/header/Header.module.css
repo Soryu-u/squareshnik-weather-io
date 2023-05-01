@@ -14,6 +14,44 @@
 
 }
 
+.input {
+    background-color: rgb(42 42 42);
+    color: aliceblue;
+    border-radius: 20px;
+    padding: 0px 15px 0 30px;
+    display: flex;
+    align-items: center;
+}
+
+.input > input {
+    background-color: rgb(42 42 42);
+    border: none;
+    color: white;
+    font-size: 18px;
+    padding: 5px 5px;
+    margin: 5px 5px;
+}
+
+.input > img {
+    width: 20px;
+    height: 20px;
+    margin-right: 15px;
+}
+
+.input > button {
+    box-sizing: border-box;
+    background-color: transparent;
+    color: white;
+    padding: 5px 10px;
+    cursor: pointer;
+    font-size: 16px;
+    border-radius: 20px;
+}
+
+.input > button:hover {
+    background-color: #343434;
+}
+
 .temperature {
     width: 150px;
     list-style: none;

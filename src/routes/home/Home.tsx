@@ -1,35 +1,45 @@
-import React, { useState } from 'react'
+import React from 'react'
 import WeatherCard from '../../components/weatherCard/WeatherCard'
-import type WeatherData from '../../utils/interface/interface'
 import styles from './Home.module.css'
-import plus from '../../images/plus.png'
-import SelectCityModal from '../../components/modalWindow/selectCityModal/selectCityModal'
 import { getWeather } from '../../utils/axios/axios'
+import { useDispatch, useSelector } from 'react-redux'
+import { editLocation } from '../../utils/redux/locationSlice'
+import type WeatherData from '../../utils/interface/interface'
 
 export default function Home() {
-    const [weather, setWeather] = useState<WeatherData[]>([])
-    const [selectCity, setSelectCity] = useState<boolean>(false)
+    const dispatch = useDispatch()
+    const location = useSelector((state: any) => state.location.location)
 
     const handleRefreshClick = (city: string, reqId: string) => {
         void getWeather(city).then((res) => {
-            setWeather((prevWeather) => prevWeather.map((w) => (w.reqId === reqId ? res : w)))
+            const newLocation = location.map((w: WeatherData) => (w.reqId === reqId ? res : w))
+            dispatch(editLocation(newLocation))
         })
     }
 
-    console.log(weather)
+    const handleDeleteClick = (index: number) => {
+        const newLocation = location
+            .map((card: WeatherData, i: number) => {
+                if (i === index) {
+                    return null
+                } else {
+                    return card
+                }
+            })
+            .filter((card: WeatherData) => card !== null)
+        dispatch(editLocation(newLocation))
+    }
 
     return (
         <div className={styles.container}>
-            {weather.length > 0 &&
-                weather.map((card, index) => {
+            {location.length > 0 &&
+                location.map((card: WeatherData, index: number) => {
                     return (
                         <WeatherCard
                             key={index}
                             data={card}
                             onDelete={() => {
-                                const newWeather = [...weather]
-                                newWeather.splice(index, 1)
-                                setWeather(newWeather)
+                                handleDeleteClick(index)
                             }}
                             onRefresh={() => {
                                 handleRefreshClick(card.name, card.reqId)
@@ -37,16 +47,6 @@ export default function Home() {
                         />
                     )
                 })}
-            <div className={styles.add}>
-                <img
-                    onClick={() => {
-                        setSelectCity(!selectCity)
-                    }}
-                    src={plus}
-                    alt={'add'}
-                />
-            </div>
-            {selectCity && <SelectCityModal {...{ weather, setWeather, setSelectCity }} />}
         </div>
     )
 }
