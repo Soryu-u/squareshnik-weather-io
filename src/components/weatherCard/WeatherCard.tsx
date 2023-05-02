@@ -10,13 +10,15 @@ import refresh from '../../images/refresh.png'
 import WeatherInfo from '../weatherInfo/WeatherInfo'
 import { useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
+import { convertTemperature } from '../../utils/functions'
+import type weatherDetails from '../../utils/interface/weatherDetails'
 
 export default function WeatherCard(props: {
     data: WeatherData
     onDelete: () => void
     onRefresh: () => void
 }) {
-    const weatherInfo = [
+    const weatherDetails: weatherDetails[] = [
         {
             image: wind,
             alt: 'wind',
@@ -44,13 +46,6 @@ export default function WeatherCard(props: {
     ]
 
     const temperatureUnit = useSelector((state: any) => state.weather.temperatureUnit)
-    function convertTemperature(temperature: number, temperatureUnit: string): string {
-        if (temperatureUnit === 'C') {
-            return (temperature - 273.15).toFixed(0)
-        } else {
-            return (((temperature - 273.15) * 9) / 5 + 32).toFixed(0)
-        }
-    }
     const temperature: string = convertTemperature(props.data.main.temp, temperatureUnit)
 
     const iconUrl: string = props.data.weather[0].imageUrl
@@ -108,7 +103,7 @@ export default function WeatherCard(props: {
                 </div>
                 <span className={styles.horizontalLine}></span>
                 <div className={styles.info}>
-                    {weatherInfo.map((item, index) => {
+                    {weatherDetails.map((item, index) => {
                         return <WeatherInfo key={index.toString() + item.alt} data={item} />
                     })}
                 </div>

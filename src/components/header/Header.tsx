@@ -6,9 +6,10 @@ import { useDispatch, useSelector } from 'react-redux'
 import { changeTemperatureUnit } from '../../utils/redux/weatherSlice'
 import { getWeather } from '../../utils/axios/axios'
 import { addLocation } from '../../utils/redux/locationSlice'
-import { Link } from 'react-router-dom'
+import { Link, useParams } from 'react-router-dom'
 
 export default function Header() {
+    const url = useParams()
     const [city, setCity] = useState<string>('')
     const dispatch = useDispatch()
 
@@ -39,16 +40,19 @@ export default function Header() {
                 <img className={styles.logoImage} src={logo} alt={'logo'} />
                 Weather IO
             </Link>
-            <div className={styles.input}>
-                <img src={search} alt={'search'} />
-                <input
-                    type={'text'}
-                    placeholder={'Enter city'}
-                    value={city}
-                    onChange={handleInputChange}
-                />
-                <button onClick={handleAccept}>Search</button>
-            </div>
+            {Object.keys(url).length === 0 && (
+                <div className={styles.input}>
+                    <img src={search} alt={'search'} />
+                    <input
+                        type={'text'}
+                        placeholder={'Enter city'}
+                        value={city}
+                        onChange={handleInputChange}
+                    />
+                    <button onClick={handleAccept}>Search</button>
+                </div>
+            )}
+
             <ul className={styles.temperature}>
                 <li
                     className={temperatureUnit === 'C' ? styles.active : undefined}
