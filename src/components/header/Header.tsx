@@ -29,9 +29,20 @@ export default function Header() {
     }
 
     function addNewCity(city: string) {
-        void getWeather(city).then((result) => {
-            dispatch(addLocation(result))
-        })
+        const cities = localStorage.getItem('locations')
+        let citiesArray: string[] = []
+
+        if (cities !== null) {
+            citiesArray = JSON.parse(cities)
+        }
+
+        if (!citiesArray.includes(city.toLowerCase())) {
+            void getWeather(city).then((result) => {
+                citiesArray.push(result.name.toLowerCase())
+                localStorage.setItem('locations', JSON.stringify(citiesArray))
+                dispatch(addLocation(result))
+            })
+        }
     }
 
     return (
