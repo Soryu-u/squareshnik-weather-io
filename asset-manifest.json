@@ -1,0 +1,14 @@
+{
+  "files": {
+    "main.css": "/squareshnik-weather-io/static/css/main.de59f191.css",
+    "main.js": "/squareshnik-weather-io/static/js/main.af7ce420.js",
+    "static/media/logo.png": "/squareshnik-weather-io/static/media/logo.b96d027c254debfd10ca.png",
+    "index.html": "/squareshnik-weather-io/index.html",
+    "main.de59f191.css.map": "/squareshnik-weather-io/static/css/main.de59f191.css.map",
+    "main.af7ce420.js.map": "/squareshnik-weather-io/static/js/main.af7ce420.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.de59f191.css",
+    "static/js/main.af7ce420.js"
+  ]
+}
