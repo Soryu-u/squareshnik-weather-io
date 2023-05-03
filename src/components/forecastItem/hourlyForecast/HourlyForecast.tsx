@@ -15,8 +15,6 @@ export default function HourlyForecast({ item, temperatureUnit }: any) {
             ? 'rgb(173, 110, 2)'
             : 'rgb(173, 30, 2)'
 
-    console.log(heightPercentage)
-
     return (
         <div className={styles.main}>
             <div>{item.dt_txt.split(' ')[1].slice(0, 5)}</div>
