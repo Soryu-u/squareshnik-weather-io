@@ -13,7 +13,7 @@ export const getWeather = async (city: string) => {
     const iconCode: string = res.data.weather[0].icon
     const weatherData: WeatherData = res.data
 
-    weatherData.reqId = `${idd}%${weatherData.name}`
+    weatherData.reqId = `${idd}:${weatherData.name}`
     weatherData.weather[0].imageUrl = `https://openweathermap.org/img/wn/${iconCode}@2x.png`
 
     return weatherData

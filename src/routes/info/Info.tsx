@@ -13,7 +13,7 @@ export default function Info() {
     const { id } = useParams()
     let city: string = ''
     if (id != null) {
-        city = id.split('%')[1]
+        city = id.split(':')[1]
     }
 
     useEffect(() => {
@@ -32,29 +32,41 @@ export default function Info() {
                     <div className={styles.weatherInfo}>
                         <div className={styles.forecast}>
                             <div className={styles.headText}>Forecast</div>
-                            <div className={styles.forecastCards}>
-                                {weatherInfo.list.map((item: any, index: number) => {
-                                    const date = item.dt_txt.split(' ')
-                                    if (date[1] === '12:00:00') {
+                            <div style={{ overflowY: 'auto' }}>
+                                <div className={styles.forecastCards}>
+                                    {weatherInfo.list.map((item: any, index: number) => {
+                                        const date = item.dt_txt.split(' ')
+                                        if (date[1] === '12:00:00') {
+                                            return (
+                                                <DailyForecast
+                                                    key={index}
+                                                    {...{
+                                                        item,
+                                                        date,
+                                                        temperatureUnit,
+                                                    }}
+                                                />
+                                            )
+                                        }
+                                        return null
+                                    })}
+                                </div>
+                            </div>
+                        </div>
+                        <div className={styles.headText}>Hourly forecast</div>
+                        <div className={styles.highlights}>
+                            <div className={styles.hourlyForecast}>
+                                {weatherInfo.list.map((item, index) => {
+                                    if (index > 0 && index < 10) {
                                         return (
-                                            <DailyForecast
+                                            <HourlyForecast
                                                 key={index}
-                                                {...{
-                                                    item,
-                                                    date,
-                                                    temperatureUnit,
-                                                }}
+                                                {...{ item, temperatureUnit }}
                                             />
                                         )
                                     }
                                     return null
                                 })}
-                            </div>
-                        </div>
-                        <div className={styles.highlights}>
-                            <div className={styles.headText}>Hourly forecast</div>
-                            <div>
-                                <HourlyForecast />
                             </div>
                         </div>
                     </div>
