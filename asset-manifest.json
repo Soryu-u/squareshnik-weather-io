@@ -1,14 +1,14 @@
 {
   "files": {
-    "main.css": "/squareshnik-weather-io/static/css/main.de59f191.css",
-    "main.js": "/squareshnik-weather-io/static/js/main.7bfb4445.js",
+    "main.css": "/squareshnik-weather-io/static/css/main.83e34d3f.css",
+    "main.js": "/squareshnik-weather-io/static/js/main.055bf238.js",
     "static/media/logo.png": "/squareshnik-weather-io/static/media/logo.b96d027c254debfd10ca.png",
     "index.html": "/squareshnik-weather-io/index.html",
-    "main.de59f191.css.map": "/squareshnik-weather-io/static/css/main.de59f191.css.map",
-    "main.7bfb4445.js.map": "/squareshnik-weather-io/static/js/main.7bfb4445.js.map"
+    "main.83e34d3f.css.map": "/squareshnik-weather-io/static/css/main.83e34d3f.css.map",
+    "main.055bf238.js.map": "/squareshnik-weather-io/static/js/main.055bf238.js.map"
   },
   "entrypoints": [
-    "static/css/main.de59f191.css",
-    "static/js/main.7bfb4445.js"
+    "static/css/main.83e34d3f.css",
+    "static/js/main.055bf238.js"
   ]
 }
