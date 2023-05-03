@@ -6,8 +6,10 @@ import { useDispatch, useSelector } from 'react-redux'
 import { changeTemperatureUnit } from '../../utils/redux/weatherSlice'
 import { getWeather } from '../../utils/axios/axios'
 import { addLocation } from '../../utils/redux/locationSlice'
+import { Link, useParams } from 'react-router-dom'
 
 export default function Header() {
+    const url = useParams()
     const [city, setCity] = useState<string>('')
     const dispatch = useDispatch()
 
@@ -27,27 +29,41 @@ export default function Header() {
     }
 
     function addNewCity(city: string) {
-        void getWeather(city).then((result) => {
-            dispatch(addLocation(result))
-        })
+        const cities = localStorage.getItem('locations')
+        let citiesArray: string[] = []
+
+        if (cities !== null) {
+            citiesArray = JSON.parse(cities)
+        }
+
+        if (!citiesArray.includes(city.toLowerCase())) {
+            void getWeather(city).then((result) => {
+                citiesArray.push(result.name.toLowerCase())
+                localStorage.setItem('locations', JSON.stringify(citiesArray))
+                dispatch(addLocation(result))
+            })
+        }
     }
 
     return (
         <div className={styles.header}>
-            <div className={styles.logo}>
+            <Link to={'/'} className={styles.logo}>
                 <img className={styles.logoImage} src={logo} alt={'logo'} />
                 Weather IO
-            </div>
-            <div className={styles.input}>
-                <img src={search} alt={'search'} />
-                <input
-                    type={'text'}
-                    placeholder={'Enter city'}
-                    value={city}
-                    onChange={handleInputChange}
-                />
-                <button onClick={handleAccept}>Search</button>
-            </div>
+            </Link>
+            {Object.keys(url).length === 0 && (
+                <div className={styles.input}>
+                    <img src={search} alt={'search'} />
+                    <input
+                        type={'text'}
+                        placeholder={'Enter city'}
+                        value={city}
+                        onChange={handleInputChange}
+                    />
+                    <button onClick={handleAccept}>Search</button>
+                </div>
+            )}
+
             <ul className={styles.temperature}>
                 <li
                     className={temperatureUnit === 'C' ? styles.active : undefined}
