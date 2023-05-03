@@ -28,7 +28,7 @@ export default function Sidebar({ weatherInfo, temperatureUnit }: Props) {
             image: rain,
             alt: 'rain',
             item: `${weatherInfo.list[0].clouds.all}%`,
-            description: 'Chance of rain',
+            description: 'Cloud',
         },
         {
             image: pressure,

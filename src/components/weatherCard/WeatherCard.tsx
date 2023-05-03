@@ -29,7 +29,7 @@ export default function WeatherCard(props: {
             image: rain,
             alt: 'rain',
             item: `${props.data.clouds.all}%`,
-            description: 'Chance of rain',
+            description: 'Cloud',
         },
         {
             image: pressure,
