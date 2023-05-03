@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import styles from './WeatherCard.module.css'
 import type WeatherData from '../../utils/interface/interface'
 import wind from '../../images/wind.png'
@@ -7,6 +7,7 @@ import humidity from '../../images/humidity.png'
 import rain from '../../images/acid-rain.png'
 import plus from '../../images/plus.png'
 import refresh from '../../images/refresh.png'
+import done from '../../images/done.png'
 import WeatherInfo from '../weatherInfo/WeatherInfo'
 import { useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
@@ -18,6 +19,7 @@ export default function WeatherCard(props: {
     onDelete: () => void
     onRefresh: () => void
 }) {
+    const [icon, setIcon] = useState<string>(refresh)
     const weatherDetails: weatherDetails[] = [
         {
             image: wind,
@@ -69,6 +71,16 @@ export default function WeatherCard(props: {
     const isDay = localTime.getHours() >= 7 && localTime.getHours() < 18
     const headerClassName = isDay ? styles.day : styles.night
 
+    function handleRefresh() {
+        if (icon !== done) {
+            props.onRefresh()
+            setIcon(done)
+            setTimeout(() => {
+                setIcon(refresh)
+            }, 5000)
+        }
+    }
+
     return (
         <div className={styles.container}>
             <div className={[styles.header, headerClassName].join(' ')}>
@@ -110,9 +122,9 @@ export default function WeatherCard(props: {
                 <span className={styles.horizontalLine}></span>
                 <div className={styles.navigation}>
                     <img
-                        className={styles.refresh}
-                        onClick={props.onRefresh}
-                        src={refresh}
+                        className={icon !== done ? styles.refresh : styles.done}
+                        onClick={handleRefresh}
+                        src={icon}
                         alt={'refresh'}
                     />
                     <Link to={`info/${props.data.reqId}`} className={styles.open}>

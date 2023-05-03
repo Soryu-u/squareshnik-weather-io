@@ -115,10 +115,13 @@
     margin: 15px 10px 0 10px;
 }
 
-.refresh {
+.refresh, .done {
     width: 40px;
     height: 40px;
     cursor: pointer;
+}
+
+.refresh {
     transition: transform 0.5s ease-in-out;
 }
 
